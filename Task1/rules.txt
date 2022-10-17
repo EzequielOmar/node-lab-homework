@@ -1,0 +1,7 @@
+Task 1.
+Create console script that accept as the first parameter url of the picture 
+and second parameter path to the file. Script should save picture from specified URL
+as a specified file. Extension of the image and file should match, otherwise script 
+should produce an error. Example of call:
+
+node ./index.js https://someurl.com/pic.png ./pic_folder/saved_picture.png

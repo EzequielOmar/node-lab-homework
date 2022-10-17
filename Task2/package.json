@@ -1,0 +1,14 @@
+{
+  "name": "task2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "search": "node index.js SEARCH Mi",
+    "create": "node index.js CREATE John 19",
+    "update": "node index.js UPDATE John 91",
+    "delete": "node index.js DELETE John"
+  },
+  "author": "",
+  "license": "ISC"
+}

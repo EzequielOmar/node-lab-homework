@@ -1,0 +1,7 @@
+Create console script for JSON database for students (name and age), each name is unique.
+Script should be able to do Search, Create, Update and Delete operations and all parameters
+should be specified through console. Example of calls:
+
+node ./index.js CREATE John 19
+node ./index.js SEARCH Mi (should return all students that contains "Mi" in name)
+node ./index.js DELETE Greg
