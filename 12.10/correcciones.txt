@@ -1,0 +1,18 @@
+// Task1
+Correcta validacion de tipo de archivos:
+*no usar split con numbers al final, tiene sentido.
+*mejor include
+
+const exts = ['jpg','png',...];
+fileExt = file.split('.').pop();
+exts.includes(fileExt);
+
+// Task2
+*siempre tener la base de datos ordenada, y buscar dividiendo el array que es más efectivo.
+
+//try catch
+try{
+	fs.readfile.then -> throw error
+}catch(e){
+	console.log(e);
+}

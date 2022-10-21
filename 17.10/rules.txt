@@ -1,0 +1,14 @@
+Create your own realisation of EventEmitter. It should support 4 methods:
+1. emitter.emit(eventName[, ...args])  - Synchronously calls each of the listeners
+    registered for the event named eventName, in the order they were registered, passing the 
+    supplied arguments to each.
+2. emitter.on(eventName, listener) - Adds the listener function to the end of the listeners
+    array for the event named eventName. No checks are made to see if the listener has already
+    been added. Multiple calls passing the same combination of eventName and listener will result
+    in the listener being added, and called, multiple times.
+3. emitter.prependListener(eventName, listener) - Adds the listener function to the beginning of
+    the listeners array for the event named eventName. No checks are made to see if the listener has
+    already been added. Multiple calls passing the same combination of eventName and listener will 
+    result in the listener being added, and called, multiple times.
+4. emitter.removeListener(eventName, listener) - Removes the specified listener from the listener
+    array for the event named eventName.
