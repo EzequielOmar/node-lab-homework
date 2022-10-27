@@ -1,0 +1,1 @@
+About event emitter, map is not very good function to run all handlers, because in some versions of node engine it could be run async, but you should run handlers one-by-one, so please use cycle

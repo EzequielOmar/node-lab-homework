@@ -7,14 +7,13 @@ export class CustomEventEmitter {
 
   emit(eventName: string, ...args: any[]) {
     if (eventName === "" || !this._listeners[eventName]) return;
-    this._listeners[eventName].map((listener: Function) => {
-      //console.log(listener);
-      //! console.log(listener['arguments']);
+    for (let i = 0; i < this._listeners[eventName].length; i++) {
+      //! console.log(this._listeners[eventName][i]['arguments']);
       //* Trying to acces arguments (to route params to correct functions) with this line, throw this error:
       //! TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed
       //! on strict mode functions or the arguments objects for calls to them
-      listener(...args);
-    });
+      this._listeners[eventName][i](...args);
+    }
   }
 
   on(eventName: string, listener: Function) {

@@ -10,49 +10,56 @@ if (method) {
   let age = process.argv[4];
   try {
     readJson();
+    switch (method) {
+      case "SEARCH":
+        let matchIndex = match(name);
+        if (matchIndex >= 0) console.log(db[matchIndex]);
+        else console.log("The search did not return any match");
+        break;
+      case "CREATE":
+        let exitsIndex = exists(name);
+        if (exitsIndex === -1) {
+          db.push({ name: name, age: age });
+          saveJson();
+          console.log("Student created succesfuly: " + name);
+        } else console.log("Student already exists: " + db[exitsIndex].name);
+        break;
+      case "UPDATE":
+        let updateIndex = exists(name);
+        if (updateIndex > -1) {
+          db[updateIndex] = { name: name, age: age };
+          saveJson();
+          console.log("Student updated succesfuly: " + name);
+        } else console.log("Student does not exists");
+        break;
+      case "DELETE":
+        let deleteIndex = exists(name);
+        if (deleteIndex > -1) {
+          db.splice(deleteIndex, 1);
+          saveJson();
+          console.log("Student deleted succesfuly: " + name);
+        } else console.log("Student does not exists");
+        break;
+    }
   } catch (e) {
     console.log(e);
-    return;
-  }
-  switch (method) {
-    case "SEARCH":
-      let matchIndex = match(name);
-      if (matchIndex >= 0) console.log(db[matchIndex]);
-      else console.log("The search did not return any match");
-      break;
-    case "CREATE":
-      let exitsIndex = exists(name);
-      if (exitsIndex === -1) {
-        db.push({ name: name, age: age });
-        saveJson();
-        console.log("Student created succesfuly: " + name);
-      } else console.log("Student already exists: " + db[exitsIndex].name);
-      break;
-    case "UPDATE":
-      let updateIndex = exists(name);
-      if (updateIndex > -1) {
-        db[updateIndex] = { name: name, age: age };
-        saveJson();
-        console.log("Student updated succesfuly: " + name);
-      } else console.log("Student does not exists");
-      break;
-    case "DELETE":
-      let deleteIndex = exists(name);
-      if (deleteIndex > -1) {
-        db.splice(deleteIndex, 1);
-        saveJson();
-        console.log("Student deleted succesfuly: " + name);
-      } else console.log("Student does not exists");
-      break;
   }
 }
 
 function readJson() {
-  db = JSON.parse(fs.readFileSync(dbPath));
+  try {
+    db = JSON.parse(fs.readFileSync(dbPath));
+  } catch (e) {
+    throw e;
+  }
 }
 
 function saveJson() {
-  fs.writeFileSync(dbPath, JSON.stringify(db));
+  try {
+    fs.writeFileSync(dbPath, JSON.stringify(db));
+  } catch (e) {
+    throw e;
+  }
 }
 
 function match(filter) {
